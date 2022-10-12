@@ -1,18 +1,13 @@
 from mimetypes import init
-import random
 import sys
 
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
-# from PySide6.QtGui import QAction
-# from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QToolBar)
-
 
 class CreateWindow(QtWidgets.QWidget):
 
     def __init__(self, appwindow) -> None:
         super().__init__()
-
         self.appwindow = appwindow
 
         layout = QtWidgets.QVBoxLayout()
@@ -38,6 +33,7 @@ class CreateWindow(QtWidgets.QWidget):
     def onConfirmClicK(self, s):
         self.appwindow.initTable(int(self.edit1.text()), int(self.edit2.text()))
         self.close()
+
 
 class TableModel(QtCore.QAbstractTableModel):
     def __init__(self, data):
