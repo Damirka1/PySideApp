@@ -51,6 +51,9 @@ class TableModel(QtCore.QAbstractTableModel):
             # .column() indexes into the sub-list
             return self._data[index.row()][index.column()]
 
+    def getData(self):
+        return self._data
+
     def rowCount(self, index):
         # The length of the outer list.
         return len(self._data)
@@ -99,9 +102,16 @@ class Application(QtWidgets.QMainWindow):
         file_menu.addAction(clear)
         file_menu.addAction(exit)
 
-        file_menu = menu.addMenu("Настройки")
-        file_menu = menu.addMenu("Расчет")
-        file_menu = menu.addMenu("Справка")
+        settings_menu = menu.addMenu("Настройки")
+        
+        solve_menu = menu.addMenu("Расчет")
+
+        solve = QtGui.QAction("Вариант 12", self)
+        solve.triggered.connect(self.solve)
+
+        solve_menu.addAction(solve);
+
+        info_menu = menu.addMenu("Справка")
 
 
     def initTable(self, x, y):
@@ -139,11 +149,33 @@ class Application(QtWidgets.QMainWindow):
     def onExitClicked(self, s):
         self.close()
 
+    # Тут решение 12 варианта
+    def solve(self, s):
+        data = self.model.getData()
+
+        # 1. Сумма строки
+        for i in range(len(data)):
+            d = data[i]
+            sum = 0
+            for j in range(len(d)):
+                sum += int(d[j])
+            print(f"Сумма строки %i равна %i" %(i + 1, sum))
+
+        # 2. на это забил
+
+        # 3. Количество строк, хранящих хотя бы одно отрицательное число
+        v = 0
+        for i in range(len(data)):
+            d = data[i]
+            for j in range(len(d)):
+                if(int(d[j]) < 0):
+                    v += 1
+                    break
+        print(f"Количество строк с отрицательными числами %i" % (v))
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-
 
     application = Application()
     application.resize(800, 600)
@@ -152,3 +184,4 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 
 # Сделано с душой и любовью за полчаса)
+# уже не за пол часа
