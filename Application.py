@@ -83,19 +83,15 @@ class Application(QtWidgets.QMainWindow):
         file_menu = menu.addMenu("Файл")
 
         create = QtGui.QAction("Создать", self)
-        create.setStatusTip("Основные операции")
         create.triggered.connect(self.onCreateClicked)
 
         save = QtGui.QAction("Сохранить", self)
-        save.setStatusTip("Основные операции")
         save.triggered.connect(self.onSaveClicked)
 
         clear = QtGui.QAction("Очистить", self)
-        clear.setStatusTip("Основные операции")
         clear.triggered.connect(self.onClearClicked)
 
         exit = QtGui.QAction("Выход", self)
-        exit.setStatusTip("Основные операции")
         exit.triggered.connect(self.onExitClicked)
 
         file_menu.addAction(create)
@@ -124,6 +120,10 @@ class Application(QtWidgets.QMainWindow):
 
         self.setCentralWidget(self.table)
 
+    def clearTable(self):
+        self.table = None
+        self.model = None
+        self.setCentralWidget(None)
 
     def onCreateClicked(self, s):
         self.w = CreateWindow(self)
@@ -134,7 +134,7 @@ class Application(QtWidgets.QMainWindow):
         print("save", s)
 
     def onClearClicked(self, s):
-        print("clear", s)
+        self.clearTable()
 
     def onExitClicked(self, s):
         self.close()
