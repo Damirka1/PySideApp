@@ -4,6 +4,10 @@ import sys
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
 
+# TODO:
+# нужно до делать кнопки, и там остальное по тз лабы, а так вроде все
+# пс. люблю python - лаба на питоне больше, чем курсовая по c++
+
 class CreateWindow(QtWidgets.QWidget):
 
     def __init__(self, appwindow) -> None:
