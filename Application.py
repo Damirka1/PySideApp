@@ -55,7 +55,8 @@ class InfoWindow(QtWidgets.QWidget):
         self.setWindowTitle("Справка")
         layout = QtWidgets.QVBoxLayout()
 
-        self.label1 = QtWidgets.QLabel("Супер важная инфа111!")
+        self.label1 = QtWidgets.QLabel("1. Найти суммы цифр элементов каждой строки матрицы.\n2. Определить сумму элементов матрицы,\nрасположенных на пересечении строк, начинающихся с отрицательного элемента,\nи столбцов, кончающихся положительным элементом.\n3. Определить количество строк матрицы, содержащих хотя бы один отрицательный элемент.")
+        self.label1.setAlignment(QtCore.Qt.AlignLeft)
         layout.addWidget(self.label1)
 
         layout.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
@@ -151,6 +152,9 @@ class Application(QtWidgets.QMainWindow):
         save = QtGui.QAction("Сохранить", self)
         save.triggered.connect(self.onSaveClicked)
 
+        load = QtGui.QAction("Загрузить", self)
+        load.triggered.connect(self.onLoadClicked)
+
         clear = QtGui.QAction("Очистить", self)
         clear.triggered.connect(self.onClearClicked)
 
@@ -159,6 +163,7 @@ class Application(QtWidgets.QMainWindow):
 
         file_menu.addAction(create)
         file_menu.addAction(save)
+        file_menu.addAction(load)
         file_menu.addAction(clear)
         file_menu.addAction(exit)
 
@@ -204,7 +209,12 @@ class Application(QtWidgets.QMainWindow):
         self.w.show()
 
     def onSaveClicked(self, s):
-        print("save", s)
+        print("Венгардиум левиосса"s)
+
+
+    def onLoadClicked(self, s):
+        print("Финито ля комедия")
+
 
     def onClearClicked(self, s):
         self.clearTable()
