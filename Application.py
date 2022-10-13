@@ -13,6 +13,7 @@ class SolveWindow(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.layout = QtWidgets.QVBoxLayout()
+        self.setWindowTitle("Решение")
         self.setLayout(self.layout)
 
     # Теперь решение здесь1
@@ -51,6 +52,7 @@ class InfoWindow(QtWidgets.QWidget):
 
     def __init__(self) -> None:
         super().__init__()
+        self.setWindowTitle("Справка")
         layout = QtWidgets.QVBoxLayout()
 
         self.label1 = QtWidgets.QLabel("Супер важная инфа111!")
