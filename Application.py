@@ -166,8 +166,9 @@ class Application(QtWidgets.QMainWindow):
         solve_menu.addAction(solve);
 
         info_menu = menu.addMenu("Справка")
-        info = QtGui.QAction()
+        info = QtGui.QAction("Справка", self)
         info.triggered.connect(self.onInfoClicked)
+        info_menu.addAction(info)
 
 
     def initTable(self, x, y):
