@@ -58,6 +58,8 @@ class InfoWindow(QtWidgets.QWidget):
         self.label1 = QtWidgets.QLabel("Супер важная инфа111!")
         layout.addWidget(self.label1)
 
+        layout.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+
         self.setLayout(layout)
 
 
@@ -86,7 +88,11 @@ class CreateWindow(QtWidgets.QWidget):
         self.confirm = QtWidgets.QPushButton("Подтвердить", self)
         self.confirm.clicked.connect(self.onConfirmClicK)
         layout.addWidget(self.confirm)
+
+        layout.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+
         self.setLayout(layout)
+        
 
     def onConfirmClicK(self, s):
         self.appwindow.initTable(int(self.edit1.text()), int(self.edit2.text()))
@@ -163,7 +169,7 @@ class Application(QtWidgets.QMainWindow):
         solve = QtGui.QAction("Вариант 12", self)
         solve.triggered.connect(self.solve)
 
-        solve_menu.addAction(solve);
+        solve_menu.addAction(solve)
 
         info_menu = menu.addMenu("Справка")
         info = QtGui.QAction("Справка", self)
@@ -194,7 +200,7 @@ class Application(QtWidgets.QMainWindow):
 
     def onCreateClicked(self, s):
         self.w = CreateWindow(self)
-        self.w.resize(300, 200)
+        self.w.resize(300, 150)
         self.w.show()
 
     def onSaveClicked(self, s):
