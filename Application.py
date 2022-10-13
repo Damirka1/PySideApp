@@ -209,7 +209,7 @@ class Application(QtWidgets.QMainWindow):
         self.w.show()
 
     def onSaveClicked(self, s):
-        print("Венгардиум левиосса"s)
+        print("Венгардиум левиосса")
 
 
     def onLoadClicked(self, s):
