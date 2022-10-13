@@ -13,8 +13,10 @@ class SolveWindow(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.layout = QtWidgets.QVBoxLayout()
+        self.layout.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
         self.setWindowTitle("Решение")
         self.setLayout(self.layout)
+        
 
     # Теперь решение здесь1
     def solve(self, data) -> None:
