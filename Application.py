@@ -8,6 +8,58 @@ from PySide6.QtCore import Qt
 # нужно до делать кнопки, и там остальное по тз лабы, а так вроде все
 # пс. люблю python - лаба на питоне больше, чем курсовая по c++
 
+
+class SolveWindow(QtWidgets.QWidget):
+    def __init__(self) -> None:
+        super().__init__()
+        self.layout = QtWidgets.QVBoxLayout()
+        self.setLayout(self.layout)
+
+    # Теперь решение здесь1
+    def solve(self, data) -> None:
+
+        layout = self.layout
+        
+        str = ""
+        # 1. Сумма строки
+        for i in range(len(data)):
+            d = data[i]
+            sum = 0
+            for j in range(len(d)):
+                sum += int(d[j])
+            
+            str += f"Сумма строки %i равна %i\n" %(i + 1, sum)
+
+        self.label1 = QtWidgets.QLabel(str)
+        layout.addWidget(self.label1)
+
+        # 2. на это забил
+
+        # 3. Количество строк, хранящих хотя бы одно отрицательное число
+        v = 0
+        for i in range(len(data)):
+            d = data[i]
+            for j in range(len(d)):
+                if(int(d[j]) < 0):
+                    v += 1
+                    break
+        self.label2 = QtWidgets.QLabel(f"Количество строк с отрицательными числами %i" % (v))
+        layout.addWidget(self.label2)
+        
+
+class InfoWindow(QtWidgets.QWidget):
+
+    def __init__(self) -> None:
+        super().__init__()
+        layout = QtWidgets.QVBoxLayout()
+
+        self.label1 = QtWidgets.QLabel("Супер важная инфа111!")
+        layout.addWidget(self.label1)
+
+        self.setLayout(layout)
+
+
+
 class CreateWindow(QtWidgets.QWidget):
 
     def __init__(self, appwindow) -> None:
@@ -79,7 +131,7 @@ class Application(QtWidgets.QMainWindow):
         self.setWindowTitle("Lab Solution application")
 
         self.initMenu()
-        # self.initTable()
+        
 
     def initMenu(self) -> None:
         menu = self.menuBar()
@@ -112,6 +164,8 @@ class Application(QtWidgets.QMainWindow):
         solve_menu.addAction(solve);
 
         info_menu = menu.addMenu("Справка")
+        info = QtGui.QAction()
+        info.triggered.connect(self.onInfoClicked)
 
 
     def initTable(self, x, y):
@@ -152,26 +206,17 @@ class Application(QtWidgets.QMainWindow):
     # Тут решение 12 варианта
     def solve(self, s):
         data = self.model.getData()
+        self.w2 = SolveWindow()
+        self.w2.resize(400, 300)
+        self.w2.show()
+        self.w2.solve(data)
+        
 
-        # 1. Сумма строки
-        for i in range(len(data)):
-            d = data[i]
-            sum = 0
-            for j in range(len(d)):
-                sum += int(d[j])
-            print(f"Сумма строки %i равна %i" %(i + 1, sum))
+    def onInfoClicked(self, s):
+        self.w1 = InfoWindow()
+        self.w1.resize(300, 200)
+        self.w1.show()
 
-        # 2. на это забил
-
-        # 3. Количество строк, хранящих хотя бы одно отрицательное число
-        v = 0
-        for i in range(len(data)):
-            d = data[i]
-            for j in range(len(d)):
-                if(int(d[j]) < 0):
-                    v += 1
-                    break
-        print(f"Количество строк с отрицательными числами %i" % (v))
 
 
 if __name__ == "__main__":
